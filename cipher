@@ -1,0 +1,29 @@
+vi mycipher.py
+import sys
+
+shift = int(sys.argv[1]) % 26
+
+text = ""
+for line in sys.stdin:
+    text += line
+text = text.upper()
+
+filtered = ""
+for ch in text:
+  if "A" <= ch <= "Z":
+      filtered += ch
+encoded = ""
+for ch in filtered:
+    letter = ord(ch) - ord("A")
+    letter = (letter + shift) % 26
+    encoded += chr(letter + ord("A"))
+count = 0
+
+for ch in encoded:
+    print(ch, end="")
+    count += 1
+    if count == 5:
+    print(" ", end="")
+    count = 0
+  
+print()
